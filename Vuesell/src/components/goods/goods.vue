@@ -4,7 +4,7 @@
       <div class="menu-wrapper" ref="menu">
         <ul>
           <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex === index}"
-              @click="selectMenu(index,$event)"
+              @click.stop.prevent="selectMenu(index,$event)"
           >
           <span class="text border-1px">
             <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
@@ -46,7 +46,7 @@
       <shopcart ref="shopcart" :select-foods="selectFoods" :deliveryPrice="seller.deliveryPrice"
                 :minPrice="seller.minPrice"></shopcart>
     </div>
-    <food :food="selectedFood" ref="food"></food>
+    <food @add="addFood" :food="selectedFood" ref="food"></food>
   </div>
 </template>
 
